@@ -1,0 +1,203 @@
+<html>
+
+<head>
+  <title>_____title_____</title>
+</head>
+
+<body>
+  <style>
+    #drop_zone {
+      border: 5px solid blue;
+      width: 200px;
+      height: 100px;
+    }
+
+    body {
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    #mainWrapper {}
+
+    a,
+    a:visited {
+      text-decoration: none;
+      color: #111;
+    }
+
+    a:hover,
+    a:focus {
+      color: #169;
+    }
+
+    #playList {
+      /* padding: 8px; */
+      position: fixed;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      padding-top: 64px;
+      top: 0;
+      background: #ffe;
+    }
+
+    #playList a {
+      margin: 8px;
+    }
+
+    #main {
+      margin: 8px;
+    }
+
+    #panel {
+      position: fixed;
+      left: 200px;
+      top: 0;
+      width: 100%;
+      background: #eff;
+      padding: 8px;
+    }
+
+    #lrcRoot {
+      margin: 64px;
+      margin-left: 200px;
+      padding: 16px;
+      margin-top: 128px;
+    }
+
+    #lrcRoot a {
+      display: inline-block;
+      padding: 8px;
+      font-size: 20px;
+    }
+
+    #lrcWrapper {}
+
+    .phrase {
+      vertical-align: top;
+      display: inline-block;
+      margin: 8px;
+    }
+
+    .s0,
+    .s1,
+    .s2,
+    .s3 {
+      margin: 2px;
+      line-height: 1.2em;
+    }
+
+    .s1 {
+      font-size: 1.6em;
+      font-weight: 600;
+    }
+
+    .s0 {
+      font-size: .9em;
+    }
+
+    #syncCurrentLineBtn {
+      display: none;
+      position: fixed;
+      width: 50%;
+      right: 0;
+      top: 50%;
+      height: 50%;
+      opacity: .6;
+      background: #eef;
+      border: 0;
+    }
+
+    #mainWrapper {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      top: 0;
+      left: 0;
+      padding: 0;
+      z-index: 222;
+      background: #fff;
+      overflow: scroll;
+    }
+
+    .s2 {
+      font-size: 1.1em;
+    }
+
+    .s3 {
+      font-size: .9em;
+    }
+
+    #dropZone {
+      padding: 120px 16px;
+      text-align: center;
+    }
+  </style>
+  <script>
+    const uploadMode = true
+  </script>
+
+
+
+  <audio id="audio"></audio>
+  <div id="mainWrapper">
+    <div id="playList"></div>
+    <div id="panel">
+      <div id="resyncPanel">
+        lrc creator/maker
+        <button id="startMakerBtn">start</button>
+        <button id="resetTimeBtn">reset</button>
+        <button id="syncCurrentLineBtn">press `space` or touch here to sync current line</button>
+      </div>
+      <div id="resyncPanel">
+        time adjust
+        <button class="text-btn i-b" onclick="resyncu(.2)">↑</button>
+        <button class="text-btn i-b" onclick="resyncu(.5)">↑↑</button>
+        <button class="text-btn i-b" onclick="resyncu(1)">↑↑↑</button>
+        <button class="text-btn i-b" onclick="resyncd(.2)">↓</button>
+        <button class="text-btn i-b" onclick="resyncd(.5)">↓↓</button>
+        <button class="text-btn i-b" onclick="resyncd(1)">↓↓↓</button>
+        <button class="text-btn i-b" id="pickLineWithTimeBtn">pick line with time</button>
+        <button class="text-btn i-b" id="downLrcBtn">downLrc</button>
+        <button class="text-btn i-b" id="copyLrcBtn">copyLrc</button>
+        <!-- <button class="text-btn i-b" onclick="downloadLrc()">down lrcfull</button> -->
+        <!-- <button class="text-btn i-b" id="clippingBtn" onclick="clip()">Clipping</button> -->
+      </div>
+      <div>
+        playing speed
+        <progress id="speedBar" max="100" value="50"></progress>
+        <button id="resetSpeedBtn">reset</button>
+        <progress id="progressBar" max="100" value="0"></progress>
+        <span id="currentTime"></span>
+      </div>
+      <div>
+        <span id="audioInfo"></span>
+      </div>
+      <div id="controlPanel">
+        <button class="text-btn i-b" id="prevBtn">prev</button>
+        <button class="text-btn i-b" id="nextBtn">next</button>
+        <button id="playBtn">play</button>
+      </div>
+    </div>
+    <div id="lrcRoot" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"">
+      <div id=" dropZone">
+      drop .mp3 to play<br />
+      drop .lrc (for resync adjust time) or .txt (for start create new)<br />
+      drop .txt over synced lrc to keep time but replace text with text in txt (require same number line)
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- <script src="test.js"> -->
+  <!-- // <script src="_____dataname_____"> -->
+  </script>
+  <script src="lrcTools.js">
+  </script>
+
+
+</body>
+
+</html>
